@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CORE2016 P3</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <main>
+            Número:
+            <input type="text" id="pantalla">
+            <p>
+                <button type="button" id="suma" > + </button>
+                <button type="button" id="resta"> - </button>
+                <button type="button" id="cuadrado">x2</button>
+                <button type="button" id="inverso">1/x</button>
+                <button type="button" id="raiz"> sqrt(x)</button>
+                <button type="button" id="pentera">parte_entera </button>
+                <button type="button" id="potencia2" >2x</button>
+                <button type="button" id="factorial">x!</button>
+                <button type="button" id="igual">=</button>
+                <button type="button" id="limpiar">Limpiar</button>
+
+
+            </p>
+            <script>
+                $(document).ready(function () {
+                    eval(document.getElementById("pantalla").value='');
+                });
+                $("#cuadrado").click(function () {
+                    var k=comprobarLegal();
+                    if(!k) {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var cantidad=document.getElementById("pantalla").value;
+                    var resultado=Math.pow(cantidad,2);
+                    eval(document.getElementById("pantalla").value=resultado);
+                });
+                $("#inverso").click(function () {
+                    var k = comprobarLegal();
+                    var cantidad = document.getElementById("pantalla").value;
+                    if (!k || cantidad == "0") {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var resultado = Math.pow(cantidad, -1);
+                    eval(document.getElementById("pantalla").value = resultado);
+
+                });
+                $("#raiz").click(function () {
+                    var k=comprobarLegal();
+                    if(!k) {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var cantidad=document.getElementById("pantalla").value;
+                    var resultado=Math.pow(cantidad,1/2);
+                    eval(document.getElementById("pantalla").value=resultado);
+                });
+                $("#pentera").click(function () {
+                    var k=comprobarLegal();
+                    if(!k) {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var cantidad=document.getElementById("pantalla").value;
+                    var resultado=Math.ceil(cantidad);
+                    eval(document.getElementById("pantalla").value=resultado);
+                });
+                $("#potencia2").click(function () {
+                    var k=comprobarLegal();
+                    if(!k) {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var cantidad=document.getElementById("pantalla").value;
+                    var resultado=Math.pow(2,cantidad);
+                    eval(document.getElementById("pantalla").value=resultado);
+                });
+                $("#factorial").click(function () {
+                    var k=comprobarLegal();
+                    if(!k) {
+                        eval(document.getElementById("pantalla").value='ERROR');
+                        return;
+                    }
+                    var cantidad=document.getElementById("pantalla").value;
+                    var resultado = 1;
+                    for (var i = 1; i <= cantidad; i++) {
+                        resultado *= i;
+                    }
+                    eval(document.getElementById("pantalla").value=resultado);
+                });
+                $("#pantalla").click(function () {
+                 //   eval(document.getElementById("pantalla").value='');
+                });
+                window.onload = function(evt) {
+                    $(function () {
+
+                        //var input=document.getElementById("box");
+                        var num1;
+                        var num;
+                        var ind1=0;
+                        var ind2=0;
+
+                        $("#suma").on('click', function () {
+                            var input = $("#pantalla");//variable del cajetin
+                            num1 = input.val();//en la var num1 guardamos el primer valor escrito en el cajetin
+                            input.val("");
+                            ind1=1
+                        });
+
+                       $("#resta").on('click',function () {
+                           var input = $("#pantalla");//variable del cajetin
+                           num = input.val();//en la var num1 guardamos el primer valor escrito en el cajetin
+                           input.val("");
+                           ind2=1
+                       });
+
+                        $("#igual").on('click', function () {
+                            var input = $("#pantalla");
+                            num2 = input.val();
+                            if(ind1==0&&ind2==1){
+                                num2=-num2;
+                                input.val((+num) + (+num2));//EL FALLO ESTÁ AQUÍ. ESTO FALLA!!!!
+                                ind2=0;
+                            }
+                            if(ind1=1&&ind2==0){
+                                input.val((+num1) + (+num2));
+                                ind1=0;
+                            }
+                            else {
+                                input.val((+num1) + (-num2) + (+num));
+                                ind1=0;
+                                ind2=0;
+                            }
+                        });
+                    });
+                }
+
+                $("#limpiar").on('click',function () {
+                    $("#pantalla").val("");
+
+                });
+
+
+                        /**
+                         * Función que dice si lo introducido está libre de letras.
+                         * @returns {boolean}
+                         */
+                        function comprobarLegal() {
+                            var text = document.getElementById("pantalla").value;
+                            var k = isNaN(text);
+                            //Hay que ver que pasa cuando tenemos un + o -
+                            return !k;
+                        }
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+        </main>
+
+</head>
+<body>
+
+</body>
+</html>

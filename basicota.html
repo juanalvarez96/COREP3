@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CORE2017 P3</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+
+<script type="text/javascript">
+
+    window.onload = function(evt){
+		$(function(){
+			
+			//var input=document.getElementById("box");
+			var num1;
+
+			$("#suma").on('click', function(){
+				var input=$("#box");//variable del cajetin
+				num1=input.val();//en la var num1 guardamos el primer valor escrito en el cajetin
+				input.val("");
+			});
+
+			$("#igual").on('click',function(){
+				var input=$("#box");
+				num2=input.val();
+				input.val((+num1)+(+num2));
+			});
+    	});
+    }
+</script>
+
+
+<body>
+<p id="titulo">CalcuCOREdora</p>
+Insertar número: <br><input id="box">
+<button type="button" id="suma">+</button>
+<button type="button" id="funcion">f(x,y)</button>
+<button type="button" id="funcion2">f2(x,y)</button>
+<button type="button" id="funcion3">f3(x,y)</button>
+<button type="button" id="igual">=</button>
+</body>
+
+
+</html>
